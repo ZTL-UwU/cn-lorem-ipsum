@@ -1,5 +1,5 @@
 import { characters, lastName } from './dict';
-import { randInt, randRange, getPunctuation, getEnding } from './utils';
+import { getEnding, getPunctuation, randInt, randRange } from './utils';
 
 function getText(
   len: number,
