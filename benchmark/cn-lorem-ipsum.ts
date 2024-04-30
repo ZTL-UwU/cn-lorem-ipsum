@@ -1,5 +1,4 @@
 // @ts-ignore
-import cnLorem from '../dist/index.mjs';
+import cnLorem from '../dist/index';
 
-// @ts-ignore
 cnLorem.paragraph({ len: 1e7 });
