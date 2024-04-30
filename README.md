@@ -1,4 +1,4 @@
-# cn-lorem
+# cn-lorem-ipsum
 
 [![npm version][npm-version-src]][npm-version-href]
 [![npm downloads][npm-downloads-src]][npm-downloads-href]
@@ -12,19 +12,19 @@
 
 ```bash
 // npm
-npm i -D cn-lorem
+npm i -D cn-lorem-ipsum
 
 // pnpm
-pnpm i -D cn-lorem
+pnpm i -D cn-lorem-ipsum
 
 // bun
-bun i -D cn-lorem
+bun i -D cn-lorem-ipsum
 ```
 
 ## Usage
 
 ```typescript
-import cnLorem from 'cn-lorem';
+import cnLorem from 'cn-lorem-ipsum';
 ```
 
 ### 传参类型
@@ -105,7 +105,7 @@ cnLorem.name({ len: 2 });
 
 |                                                       |  `1e7`   |
 | :---------------------------------------------------: | :------: |
-|                     **cn-lorem**                      | 828.2 ms |
+|                  **cn-lorem-ipsum**                   | 828.2 ms |
 | [boocaii/cnlorem](https://github.com/boocaii/cnlorem) | 4.819 s  |
 
 `11th Gen Intel i5-1135G7 (8) @ 4.200GHz` with `bun@1.1.5+b257a3097`
@@ -113,7 +113,7 @@ cnLorem.name({ len: 2 });
 <details>
 
 ```
-Benchmark 1: bun run cn-lorem.ts
+Benchmark 1: bun run cn-lorem-ipsum.ts
   Time (mean ± σ):     828.2 ms ±  12.1 ms    [User: 613.3 ms, System: 243.9 ms]
   Range (min … max):   814.9 ms … 838.6 ms    3 runs
  
@@ -122,7 +122,7 @@ Benchmark 2: bun run cnlorem.ts
   Range (min … max):    4.537 s …  5.023 s    3 runs
  
 Summary
-  bun run cn-lorem.ts ran
+  bun run cn-lorem-ipsum.ts ran
     5.82 ± 0.32 times faster than bun run cnlorem.ts
 ```
 
@@ -130,21 +130,21 @@ Summary
 
 ## Contributors
 
-<a href="https://github.com/ZTL-UwU/cn-lorem/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=ZTL-UwU/cn-lorem" />
+<a href="https://github.com/ZTL-UwU/cn-lorem-ipsum/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=ZTL-UwU/cn-lorem-ipsum" />
 </a>
 
 ## License
 
 MIT
 
-[npm-version-src]: https://img.shields.io/npm/v/cn-lorem?style=flat&colorA=080f12&colorB=F2D750
-[npm-version-href]: https://npmjs.com/package/cn-lorem
-[npm-downloads-src]: https://img.shields.io/npm/dm/cn-lorem?style=flat&colorA=080f12&colorB=F2D750
-[npm-downloads-href]: https://npmjs.com/package/cn-lorem
-[bundle-src]: https://img.shields.io/bundlephobia/minzip/cn-lorem?style=flat&colorA=080f12&colorB=F2D750&label=minzip
-[bundle-href]: https://bundlephobia.com/result?p=cn-lorem
-[license-src]: https://img.shields.io/github/license/ZTL-UwU/cn-lorem.svg?style=flat&colorA=080f12&colorB=F2D750
-[license-href]: https://github.com/ZTL-UwU/cn-lorem/blob/main/LICENSE
+[npm-version-src]: https://img.shields.io/npm/v/cn-lorem-ipsum?style=flat&colorA=080f12&colorB=F2D750
+[npm-version-href]: https://npmjs.com/package/cn-lorem-ipsum
+[npm-downloads-src]: https://img.shields.io/npm/dm/cn-lorem-ipsum?style=flat&colorA=080f12&colorB=F2D750
+[npm-downloads-href]: https://npmjs.com/package/cn-lorem-ipsum
+[bundle-src]: https://img.shields.io/bundlephobia/minzip/cn-lorem-ipsum?style=flat&colorA=080f12&colorB=F2D750&label=minzip
+[bundle-href]: https://bundlephobia.com/result?p=cn-lorem-ipsum
+[license-src]: https://img.shields.io/github/license/ZTL-UwU/cn-lorem-ipsum.svg?style=flat&colorA=080f12&colorB=F2D750
+[license-href]: https://github.com/ZTL-UwU/cn-lorem-ipsum/blob/main/LICENSE
 [jsdocs-src]: https://img.shields.io/badge/jsdocs-reference-080f12?style=flat&colorA=080f12&colorB=F2D750
-[jsdocs-href]: https://www.jsdocs.io/package/cn-lorem
+[jsdocs-href]: https://www.jsdocs.io/package/cn-lorem-ipsum

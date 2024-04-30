@@ -1,1 +1,1 @@
-hyperfine --runs 3 'bun run cn-lorem.ts' 'bun run cnlorem.ts'
+hyperfine --runs 3 'bun run cn-lorem-ipsum.ts' 'bun run cnlorem.ts'

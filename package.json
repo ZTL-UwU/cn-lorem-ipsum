@@ -1,5 +1,5 @@
 {
-  "name": "cn-lorem",
+  "name": "cn-lorem-ipsum",
   "version": "0.0.1",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -14,12 +14,12 @@
   "keywords": ["bun", "lorem", "chinese"],
   "workspaces": ["benchmark/"],
   "license": "MIT",
-  "homepage": "https://github.com/ZTL-UwU/cn-lorem#readme",
+  "homepage": "https://github.com/ZTL-UwU/cn-lorem-ipsum#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ZTL-UwU/cn-lorem.git"
+    "url": "git+https://github.com/ZTL-UwU/cn-lorem-ipsum.git"
   },
-  "bugs": "https://github.com/ZTL-UwU/cn-lorem/issues",
+  "bugs": "https://github.com/ZTL-UwU/cn-lorem-ipsum/issues",
   "author": "Tony Zhang <zhangtianli2006@163.com>",
   "devDependencies": {
     "@biomejs/biome": "1.7.1",
