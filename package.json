@@ -12,6 +12,7 @@
   },
   "files": ["dist"],
   "keywords": ["bun", "lorem", "chinese"],
+  "workspaces": ["benchmark/"],
   "license": "MIT",
   "homepage": "https://github.com/ZTL-UwU/cn-lorem#readme",
   "repository": {
