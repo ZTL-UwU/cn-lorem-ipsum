@@ -31,54 +31,50 @@ function getText(
   return str.join('');
 }
 
-export const cnLorem = {
+const cnLorem = {
   phrase,
   sentence,
   paragraph,
   article,
   name,
 };
+export default cnLorem;
 
-const emptyOpt = {
-  length: undefined,
+export interface IOption {
+  len?: number;
+  min?: number;
+  max?: number;
+}
+
+const emptyOpt: IOption = {
+  len: undefined,
   min: undefined,
   max: undefined,
 };
 
-function phrase(
-  opt: { length?: number; min?: number; max?: number } = emptyOpt,
-) {
-  const len = opt.length ?? randRange(opt.min ?? 3, opt.max ?? 10);
+function phrase(opt: IOption = emptyOpt) {
+  const len = opt.len ?? randRange(opt.min ?? 3, opt.max ?? 10);
   return getText(len, true, false, false);
 }
 
-function sentence(
-  opt: { length?: number; min?: number; max?: number } = emptyOpt,
-) {
-  const len = opt.length ?? randRange(opt.min ?? 15, opt.max ?? 30);
+function sentence(opt: IOption = emptyOpt) {
+  const len = opt.len ?? randRange(opt.min ?? 15, opt.max ?? 30);
   return getText(len, false, true, false);
 }
 
-function paragraph(
-  opt: { length?: number; min?: number; max?: number } = emptyOpt,
-) {
-  const len = opt.length ?? randRange(opt.min ?? 100, opt.max ?? 200);
+function paragraph(opt: IOption = emptyOpt) {
+  const len = opt.len ?? randRange(opt.min ?? 100, opt.max ?? 200);
   return getText(len, false, false, false);
 }
 
-function article(
-  opt: { length?: number; min?: number; max?: number } = emptyOpt,
-) {
-  const len = opt.length ?? randRange(opt.min ?? 600, opt.max ?? 1000);
+function article(opt: IOption = emptyOpt) {
+  const len = opt.len ?? randRange(opt.min ?? 600, opt.max ?? 1000);
   return getText(len, false, false, true);
 }
 
-function name(forceThree: boolean) {
+function name(opt: { len?: number } = { len: undefined }) {
+  const len = opt.len ?? (Math.random() < 0.97 ? 3 : 2);
   return `${lastName[randInt(lastName.length - 1)]}${
     characters[randInt(characters.length - 1)]
-  }${
-    forceThree || Math.random() < 0.97
-      ? characters[randInt(characters.length - 1)]
-      : ''
-  }`;
+  }${len === 3 ? characters[randInt(characters.length - 1)] : ''}`;
 }
