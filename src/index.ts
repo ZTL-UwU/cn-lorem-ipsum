@@ -1,4 +1,4 @@
-import { characters, lastName } from './dict';
+import { getCharacter, lastName } from './dict';
 import { getEnding, getPunctuation, randInt, randRange } from './utils';
 
 function getText(
@@ -8,8 +8,7 @@ function getText(
   lineBreak: boolean,
 ) {
   const str = [];
-  for (let i = 0; i < len; i += 1)
-    str.push(characters[randInt(characters.length - 1)]);
+  for (let i = 0; i < len; i += 1) str.push(getCharacter());
   if (noPunctuation) return str.join('');
 
   let i = randRange(5, 16);
@@ -74,7 +73,7 @@ function article(opt: IOption = emptyOpt) {
 
 function name(opt: { len?: number } = { len: undefined }) {
   const len = opt.len ?? (Math.random() < 0.97 ? 3 : 2);
-  return `${lastName[randInt(lastName.length - 1)]}${
-    characters[randInt(characters.length - 1)]
-  }${len === 3 ? characters[randInt(characters.length - 1)] : ''}`;
+  return `${lastName[randInt(lastName.length - 1)]}${getCharacter()}${
+    len === 3 ? getCharacter() : ''
+  }`;
 }
