@@ -1,12 +1,12 @@
 {
   "name": "cn-lorem-ipsum",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "description": "fast chinese lorem-ipsum & names generator",
   "scripts": {
-    "build": "bun run build.ts",
-    "prepublishOnly": "bun run build",
+    "build": "unbuild",
+    "prepublishOnly": "unbuild",
     "typecheck": "tsc --noEmit",
     "biome:fix": "biome check --apply ."
   },
@@ -24,7 +24,7 @@
   "devDependencies": {
     "@biomejs/biome": "1.7.1",
     "@types/bun": "^1.0.0",
-    "bun-plugin-dts": "^0.2.1",
-    "typescript": "^5.2.2"
+    "typescript": "^5.2.2",
+    "unbuild": "^2.0.0"
   }
 }
