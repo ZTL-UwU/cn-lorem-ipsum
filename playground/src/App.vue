@@ -192,19 +192,18 @@ async function getShiki(
   });
 }
 
-let highlighter: HighlighterGeneric<BundledLanguage, BundledTheme>;
-
-watch([colorMode, mode, len, min, max, refreshKey], () =>
-  getShiki(highlighter),
-);
-onMounted(async () => {
+async function getShikiHighlighter() {
   highlighter = await getHighlighter({
     themes: [colorMode.value === 'light' ? 'min-light' : 'github-dark'],
     langs: ['typescript'],
   });
-
   await getShiki(highlighter);
-});
+}
+
+let highlighter: HighlighterGeneric<BundledLanguage, BundledTheme>;
+watch([mode, len, min, max, refreshKey], () => getShiki(highlighter));
+watch(colorMode, getShikiHighlighter);
+onMounted(getShikiHighlighter);
 </script>
 
 <style>
