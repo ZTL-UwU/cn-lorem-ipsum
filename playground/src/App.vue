@@ -119,10 +119,10 @@ import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useClipboard } from '@vueuse/core';
 import cnLorem from 'cn-lorem-ipsum';
 import {
-  getHighlighter,
   type BundledLanguage,
   type BundledTheme,
   type HighlighterGeneric,
+  getHighlighter,
 } from 'shiki';
 import { computed, onMounted, ref, watch } from 'vue';
 
