@@ -33,5 +33,6 @@ describe('name', () => {
   it('length', () => {
     expect(cnLorem.name({ len: 3 }).length).toBe(3);
     expect(cnLorem.name({ len: 2 }).length).toBe(2);
+    expect(cnLorem.name({ len: 100 }).length).toBe(100);
   });
 });

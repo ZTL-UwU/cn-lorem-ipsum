@@ -73,7 +73,7 @@ function article(opt: IOption = emptyOpt) {
 
 function name(opt: { len?: number } = { len: undefined }) {
   const len = opt.len ?? (Math.random() < 0.97 ? 3 : 2);
-  return `${lastName[randInt(lastName.length - 1)]}${getCharacter()}${
-    len === 3 ? getCharacter() : ''
-  }`;
+  let firstName = '';
+  for (let i = 0; i < len - 1; i += 1) firstName += getCharacter();
+  return `${lastName[randInt(lastName.length - 1)]}${firstName}`;
 }
