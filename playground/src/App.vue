@@ -15,7 +15,7 @@
           </span>
         </h1>
         <div class="ml-auto gap-1.5 text-sm flex">
-          <DarkModeTrigger></DarkModeTrigger>
+          <DarkModeTrigger />
           <a href="https://github.com/ZTL-UwU/cn-lorem-ipsum">
             <Button variant="outline" size="sm">
               <Github class="h-4 w-4" />
@@ -24,7 +24,7 @@
         </div>
       </header>
 
-      <main class="grid flex-1 gap-4 overflow-auto p-4 md:grid-cols-2 lg:grid-cols-3">
+      <main class="grid flex-1 gap-4 overflow-auto max-w-screen p-4 md:grid-cols-2 lg:grid-cols-3">
         <div>
           <Tabs v-model="mode" default-value="article">
             <TabsList class="grid w-full grid-cols-5">
@@ -70,7 +70,7 @@
               class="absolute top-2 right-2">
               <Copy class="w-4 h-4" />
             </Button>
-            <div v-html="codeHtml" class="p-4 w-[calc(100%-4rem)] overflow-x-auto" />
+            <div v-html="codeHtml" class="p-4 max-w-[calc(100vw-6rem)] w-[calc(100%-4rem)] overflow-x-auto" />
           </Card>
         </div>
         <div
@@ -87,12 +87,7 @@
           </div>
           <div class="absolute right-5 top-5 flex gap-1">
             <Badge variant="outline">{{ timeSpent === 0 ? '&lt;1' : timeSpent }}ms</Badge>
-            <Badge variant="outline">
-              {{ generatedLorem.length }}字
-            </Badge>
-            <Badge variant="outline">
-              Output
-            </Badge>
+            <Badge variant="outline">{{ generatedLorem.length }}字</Badge>
           </div>
           <div class="flex-1 pt-10 whitespace-pre-line leading-relaxed">
             {{ generatedLorem }}
@@ -123,7 +118,12 @@ import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 import { useClipboard } from '@vueuse/core';
 import cnLorem from 'cn-lorem-ipsum';
-import { getHighlighter } from 'shiki';
+import {
+  getHighlighter,
+  type BundledLanguage,
+  type BundledTheme,
+  type HighlighterGeneric,
+} from 'shiki';
 import { computed, onMounted, ref, watch } from 'vue';
 
 import DarkModeTrigger from '@/components/DarkModeTrigger.vue';
@@ -138,7 +138,7 @@ const len = ref();
 const min = ref();
 const max = ref();
 const refreshKey = ref(0);
-const timeSpent = ref();
+const timeSpent = ref(0);
 
 watch(mode, () => {
   len.value = undefined;
@@ -164,7 +164,6 @@ const generatedLorem = computed(() => {
   const end = Date.now();
 
   timeSpent.value = end - begin;
-
   return res;
 });
 const { copy: copyText } = useClipboard({ source: generatedLorem });
@@ -183,12 +182,9 @@ function getCode() {
   return `import cnLorem from 'cn-lorem-ipsum';\n\ncnLorem.${mode.value}(${str});`;
 }
 
-async function getShiki() {
-  const highlighter = await getHighlighter({
-    themes: [colorMode.value === 'light' ? 'min-light' : 'github-dark'],
-    langs: ['typescript'],
-  });
-
+async function getShiki(
+  highlighter: HighlighterGeneric<BundledLanguage, BundledTheme>,
+) {
   code.value = getCode();
   codeHtml.value = highlighter.codeToHtml(code.value, {
     lang: 'typescript',
@@ -196,8 +192,19 @@ async function getShiki() {
   });
 }
 
-watch([colorMode, mode, len, min, max, refreshKey], getShiki);
-onMounted(getShiki);
+let highlighter: HighlighterGeneric<BundledLanguage, BundledTheme>;
+
+watch([colorMode, mode, len, min, max, refreshKey], () =>
+  getShiki(highlighter),
+);
+onMounted(async () => {
+  highlighter = await getHighlighter({
+    themes: [colorMode.value === 'light' ? 'min-light' : 'github-dark'],
+    langs: ['typescript'],
+  });
+
+  await getShiki(highlighter);
+});
 </script>
 
 <style>
