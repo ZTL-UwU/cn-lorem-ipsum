@@ -8,6 +8,8 @@
 
 高效的中文随机 **假文&人名** 生成库
 
+[**Playground**](https://cn-lorem-ipsum.netlify.app/)
+
 ## Installation
 
 ```bash

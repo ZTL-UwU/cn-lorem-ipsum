@@ -86,9 +86,7 @@
             </Button>
           </div>
           <div class="absolute right-5 top-5 flex gap-1">
-            <Badge variant="outline">
-              {{ timeSpent }}ms
-            </Badge>
+            <Badge variant="outline">{{ timeSpent === 0 ? '&lt;1' : timeSpent }}ms</Badge>
             <Badge variant="outline">
               {{ generatedLorem.length }}字
             </Badge>
