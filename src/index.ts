@@ -16,7 +16,7 @@ function getText(
   while (i < len - 5) {
     const punctuation = getPunctuation(
       commaOnly,
-      i - lastLineBreak > 150 && i < len - 150 ? lineBreak : false,
+      lineBreak ? i - lastLineBreak > 150 && i < len - 150 : false,
     );
     if (punctuation === '\n') {
       str[i - 1] = getEnding();
