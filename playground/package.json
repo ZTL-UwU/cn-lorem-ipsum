@@ -15,7 +15,7 @@
     "@vueuse/core": "^10.9.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
-    "cn-lorem-ipsum": "^0.1.1",
+    "cn-lorem-ipsum": "^0.1.2",
     "lucide-vue-next": "^0.377.0",
     "radix-vue": "^1.7.3",
     "tailwind-merge": "^2.3.0",
