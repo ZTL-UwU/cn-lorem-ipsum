@@ -18,7 +18,7 @@
     "clsx": "^2.1.1",
     "cn-lorem-ipsum": "^0.2.0",
     "lucide-vue-next": "^0.477.0",
-    "radix-vue": "^1.9.17",
+    "reka-ui": "^2.0.2",
     "tailwind-merge": "^3.0.2",
     "tailwindcss-animate": "^1.0.7",
     "vaul-vue": "^0.3.0",

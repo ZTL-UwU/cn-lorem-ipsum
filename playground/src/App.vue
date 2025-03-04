@@ -118,7 +118,7 @@ import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 import { useClipboard } from '@vueuse/core';
 import cnLorem from 'cn-lorem-ipsum';
-import { createHighlighterCore, type HighlighterCore } from 'shiki/core';
+import { type HighlighterCore, createHighlighterCore } from 'shiki/core';
 import { createJavaScriptRegexEngine } from 'shiki/engine/javascript';
 import { computed, onMounted, ref, watch } from 'vue';
 
@@ -182,8 +182,8 @@ function getShiki() {
     themes: {
       light: 'min-light',
       dark: 'github-dark',
-    }
-  })
+    },
+  });
 }
 
 async function getShikiHighlighter() {
@@ -192,11 +192,9 @@ async function getShikiHighlighter() {
       import('@shikijs/themes/min-light'),
       import('@shikijs/themes/github-dark'),
     ],
-    langs: [
-      import('@shikijs/langs/typescript'),
-    ],
-    engine: createJavaScriptRegexEngine()
-  })
+    langs: [import('@shikijs/langs/typescript')],
+    engine: createJavaScriptRegexEngine(),
+  });
 
   getShiki();
 }
