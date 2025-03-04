@@ -74,7 +74,7 @@
           </Card>
         </div>
         <div
-          class="relative flex h-full min-h-[50vh] flex-col rounded-xl bg-muted/50 p-6 lg:col-span-2 border shadow-sm">
+          class="relative flex h-full min-h-[50vh] flex-col rounded-xl bg-muted/50 p-6 lg:col-span-2 border shadow-xs">
           <div class="flex absolute top-4 left-5 gap-2">
             <Button variant="outline" size="icon" @click="refreshKey += 1">
               <RefreshCcw class="w-4 h-4" />
@@ -118,21 +118,15 @@ import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 import { useClipboard } from '@vueuse/core';
 import cnLorem from 'cn-lorem-ipsum';
-import {
-  type BundledLanguage,
-  type BundledTheme,
-  type HighlighterGeneric,
-  getHighlighter,
-} from 'shiki';
+import { createHighlighterCore, type HighlighterCore } from 'shiki/core';
+import { createJavaScriptRegexEngine } from 'shiki/engine/javascript';
 import { computed, onMounted, ref, watch } from 'vue';
 
 import DarkModeTrigger from '@/components/DarkModeTrigger.vue';
-import { useColorMode } from '@vueuse/core';
 
 const mode = ref<'article' | 'name' | 'paragraph' | 'sentence' | 'phrase'>(
   'article',
 );
-const colorMode = useColorMode();
 
 const len = ref();
 const min = ref();
@@ -168,11 +162,7 @@ const generatedLorem = computed(() => {
 });
 const { copy: copyText } = useClipboard({ source: generatedLorem });
 
-const code = ref();
-const codeHtml = ref();
-const { copy: copyCode } = useClipboard({ source: code });
-
-function getCode() {
+const code = computed(() => {
   const config: string[] = [];
   if (len.value) config.push(`len: ${len.value}`);
   if (min.value) config.push(`min: ${min.value}`);
@@ -180,34 +170,49 @@ function getCode() {
 
   const str = config.length ? `{ ${config.join(', ')} }` : '';
   return `import cnLorem from 'cn-lorem-ipsum';\n\ncnLorem.${mode.value}(${str});`;
-}
+});
 
-async function getShiki(
-  highlighter: HighlighterGeneric<BundledLanguage, BundledTheme>,
-) {
-  code.value = getCode();
+const { copy: copyCode } = useClipboard({ source: code });
+
+const codeHtml = ref();
+
+function getShiki() {
   codeHtml.value = highlighter.codeToHtml(code.value, {
     lang: 'typescript',
-    theme: colorMode.value === 'light' ? 'min-light' : 'github-dark',
-  });
+    themes: {
+      light: 'min-light',
+      dark: 'github-dark',
+    }
+  })
 }
 
 async function getShikiHighlighter() {
-  highlighter = await getHighlighter({
-    themes: [colorMode.value === 'light' ? 'min-light' : 'github-dark'],
-    langs: ['typescript'],
-  });
-  await getShiki(highlighter);
+  highlighter = await createHighlighterCore({
+    themes: [
+      import('@shikijs/themes/min-light'),
+      import('@shikijs/themes/github-dark'),
+    ],
+    langs: [
+      import('@shikijs/langs/typescript'),
+    ],
+    engine: createJavaScriptRegexEngine()
+  })
+
+  getShiki();
 }
 
-let highlighter: HighlighterGeneric<BundledLanguage, BundledTheme>;
-watch([mode, len, min, max, refreshKey], () => getShiki(highlighter));
-watch(colorMode, getShikiHighlighter);
+let highlighter: HighlighterCore;
+watch([mode, len, min, max, refreshKey], () => getShiki());
 onMounted(getShikiHighlighter);
 </script>
 
 <style>
 .shiki {
   background-color: transparent !important;
+}
+
+html.dark .shiki,
+html.dark .shiki span {
+  color: var(--shiki-dark) !important;
 }
 </style>

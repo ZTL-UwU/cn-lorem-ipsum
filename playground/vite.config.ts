@@ -3,11 +3,14 @@ import { defineConfig } from 'vite';
 
 import path from 'node:path';
 import autoprefixer from 'autoprefixer';
-import tailwind from 'tailwindcss';
+import tailwindcss from '@tailwindcss/vite'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [vue()],
+  plugins: [
+    vue(),
+    tailwindcss(),
+  ],
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
@@ -15,7 +18,7 @@ export default defineConfig({
   },
   css: {
     postcss: {
-      plugins: [tailwind(), autoprefixer()],
+      plugins: [autoprefixer()],
     },
   },
 });
